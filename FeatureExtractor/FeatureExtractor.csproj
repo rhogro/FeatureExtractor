@@ -94,6 +94,9 @@
     <Content Include="Books\Reuters_34\Training\5675NEWS.XML" />
     <Content Include="Books\Reuters_34\Training\5678NEWS.XML" />
     <Content Include="Books\Reuters_34\Training\5697NEWS.XML" />
+    <Content Include="Books\Test\2504NEWS.XML" />
+    <Content Include="Books\Test\2538NEWS.XML" />
+    <Content Include="Books\Test\2775NEWS.XML" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

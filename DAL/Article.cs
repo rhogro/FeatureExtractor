@@ -4,24 +4,40 @@ using System.Text;
 
 namespace DAL
 {
-    public class Article<T, Y>
+    public class Article
     {
         public string FileName { get; set; }
         public string[] Title { get; set; }
-        public Dictionary<T,Y> Words { get; set; }
+        public Dictionary<string, int> Words { get; set; }
+        public Dictionary<string, int> AllWords { get; set; }
         public List<string> Topics { get; set; }
 
         public Article()
         {
-            Words = new Dictionary<T, Y>();
+            Words = new Dictionary<string, int>();
         }
 
-        public Article(string[] title, Dictionary<T,Y> words, string fileName, List<string> topics)
+        public Article(string[] title, Dictionary<string, int> words, string fileName, List<string> topics)
         {
             Title = title;
             Words = words;
             FileName = fileName;
             Topics = topics;
+            
+            AllWords = words;
+
+            for(int i=0;i < title.Length; i++)
+            {
+                if (AllWords.ContainsKey(title[i]))
+                {
+                    AllWords[title[i]] += 2;
+                }
+                else
+                {
+                    AllWords.Add(title[i], 2);
+                }
+            }
+
         }
 
         public override string ToString()
@@ -40,7 +56,7 @@ namespace DAL
                 builder.Append(string.Format("{0}, ", topic));
             }
             builder.AppendLine("\n");
-            foreach (KeyValuePair<T,Y> kvp in Words)
+            foreach (KeyValuePair<string, int> kvp in Words)
             {
                 builder.AppendLine(string.Format("Word: \"{0}\" - Count: {1}", kvp.Key, kvp.Value));
             }

@@ -1,0 +1,14 @@
+@attribute classification NUMERIC
+@attribute clustering NUMERIC
+@attribute learning NUMERIC
+@attribute supervised NUMERIC
+@attribute task NUMERIC
+@attribute technique NUMERIC
+@attribute techniques NUMERIC
+@attribute unsupervised NUMERIC
+@attribute class {C15,D1,D2,D3}
+
+@data
+1,1,1,0,2,0,1,0 # C15,D1
+1,0,1,1,1,1,0,0 # D2
+0,1,1,0,1,1,0,1 # D3

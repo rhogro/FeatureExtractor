@@ -1,6 +1,7 @@
 ﻿using DAL;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,21 +11,12 @@ namespace FeatureExtractor
 {
     class Program
     {
+        private const string Reuters34Path = @"..\..\Books\Reuters_34\Training";
+        private const string TestPath = @"..\..\Books\Test";
         static void Main(string[] args)
         {
-            WordExtractor wordExtractor = new WordExtractor();
-            List<Article<string, int>> articles = wordExtractor.ExtractFeatures(@"..\..\Books\Reuters_34\Training");
-            List<string> documentsDictionary = new List<string>();
-            foreach(Article<string, int> article in articles)
-            {
-                documentsDictionary.AddRange(article.Words.Keys);
-                documentsDictionary.AddRange(article.Title);
-                Console.WriteLine(string.Format("ARTICLE: {0}\n", article.FileName));
-                Console.WriteLine(article);
-                Console.WriteLine("\n------------------------------------------------------\n");
-            }
-            documentsDictionary = documentsDictionary.Distinct().ToList();
-            Console.WriteLine("Documents dictionary count: " + documentsDictionary.Count);
+            WordExtractor wordExtractor = new WordExtractor(TestPath);
+            Console.WriteLine("Entropy = " + wordExtractor.Entropy);
             Console.ReadKey();
         }
     }

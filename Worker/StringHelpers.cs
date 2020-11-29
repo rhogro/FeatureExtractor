@@ -20,13 +20,18 @@ namespace Worker
                 cleanWord = StripPossesion(cleanWord);
                 cleanWord = Regex.Replace(cleanWord,@"[^a-zA-Z -]", "");
                 cleanWord = Regex.Replace(cleanWord, @"[\d-]", "");
-                if (!string.IsNullOrWhiteSpace(cleanWord))
+                if (!string.IsNullOrWhiteSpace(cleanWord) && !IsStopWord(cleanWord))
                 {
                     cleanedWords.Add(cleanWord);
                 }
                 
             }
             return cleanedWords.ToArray();
+        }
+
+        private static bool IsStopWord(string word)
+        {
+            return Constants.StopWords.Contains(word);
         }
 
         private static string StripPossesion(string word)
