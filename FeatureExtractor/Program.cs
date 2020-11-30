@@ -11,12 +11,13 @@ namespace FeatureExtractor
 {
     class Program
     {
-        private const string Reuters34Path = @"..\..\Books\Reuters_34\Training";
+        private const string ReutersSmall = @"..\..\Books\Reuters_34";
+        private const string ReutersBig = @"..\..\Books\Reuters_7083";
         private const string TestPath = @"..\..\Books\Test";
         static void Main(string[] args)
         {
-            WordExtractor wordExtractor = new WordExtractor(TestPath);
-            Console.WriteLine("Entropy = " + wordExtractor.Entropy);
+            WordExtractor wordExtractor = new WordExtractor(ReutersBig);
+            wordExtractor.Start();
             Console.ReadKey();
         }
     }

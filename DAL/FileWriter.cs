@@ -13,12 +13,12 @@ namespace DAL
         {
             stringBuilder = new StringBuilder();
         }
-        public void WriteToFile(string datasetName, SortedDictionary<string, double> attributes, Dictionary<string, int> classes, int[,] sparseMatrix, List<string>[] dataClasses)
+        public void WriteToFile(string datasetName, SortedDictionary<string, double> attributes, Dictionary<string, int> classes, int[,] matrix, List<string>[] dataClasses)
         {
             WriteAttribuites(attributes);
             WriteClasses(classes);
-            WriteBody(sparseMatrix, dataClasses);
-            File.WriteAllText(string.Format(@"{0}.ariff", datasetName), stringBuilder.ToString());
+            WriteBody(matrix, dataClasses);
+            File.WriteAllText(string.Format(@"{0}.arff", datasetName), stringBuilder.ToString());
         }
 
         private void WriteAttribuites(SortedDictionary<string, double> attributes)
@@ -39,18 +39,18 @@ namespace DAL
             stringBuilder.AppendLine(string.Format("@attribute class {{{0}}}", classesEnumeration.TrimEnd(',')));
         }
 
-        private void WriteBody(int[,] sparseMatrix, List<string>[] dataClasses)
+        private void WriteBody(int[,] matrix, List<string>[] dataClasses)
         {
             string line;
             string classes;
             stringBuilder.AppendLine("\n@data");
-            for(int i = 0; i < sparseMatrix.GetLength(0); i++)
+            for(int i = 0; i < matrix.GetLength(0); i++)
             {
                 line = "";
                 classes = "";
-                for(int j = 0; j < sparseMatrix.GetLength(1); j++)
+                for(int j = 0; j < matrix.GetLength(1); j++)
                 {
-                    line += string.Format("{0},", sparseMatrix[i, j]);
+                    line += string.Format("{0},", matrix[i, j]);
                 }
 
                 foreach(string dataClass in dataClasses[i])
